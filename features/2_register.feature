@@ -11,7 +11,7 @@ Feature: Registration page
     And Last name error is displayed
     And Email error is displayed
     And Password error is displayed
-    And Confirm Password error is displayed
+    And Password Confirmation error is displayed with message "This is a required field."
 
   @valid
   Scenario: Register new account with valid data

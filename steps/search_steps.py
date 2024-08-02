@@ -22,7 +22,7 @@ def step_impl(context):
 @when("I click Reviews button")
 def step_impl(context):
     context.search_results_page.click_review_button()
-@when('I click 5 stars Raiting')
+@when('I click 5 stars Rating')
 def step_impl(context):
     context.search_results_page.click_rating_rev()
 @when('I write the Nickname "{text}"')
@@ -38,3 +38,4 @@ def step_impl(context, text):
 @then('I click on the Submit Review button')
 def step_impl(context):
     context.search_results_page.click_submit_review_button()
+

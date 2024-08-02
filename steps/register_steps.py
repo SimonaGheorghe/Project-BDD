@@ -55,7 +55,6 @@ def step_impl(context):
 @Then('Password error is displayed')
 def step_impl(context):
     context.register_page.verify_password_error_displayed()
-
-@Then('Confirm Password error is displayed')
-def step_impl(context):
-    context.register_page.verify_confirm_password_error_displayed()
+@then('Password Confirmation error is displayed with message "{expected_message}"')
+def step_impl(context, expected_message):
+    context.register_page.verify_error_displayed(context.register_page.ERROR_PASSWORD_CONFIRMATION, expected_message)

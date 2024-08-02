@@ -1,9 +1,7 @@
 import time
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from browser import Browser
-
 
 class BasePage(Browser):
     INPUT_SEARCH = (By.ID, "search")
@@ -26,5 +24,5 @@ class BasePage(Browser):
         return self.driver.find_elements(*locator)
 
     def verify_cart_quantity(self, expected):
-        time.sleep(5)
+        time.sleep(10)
         assert f'{expected}' in self.find(self.CART_QTY).text

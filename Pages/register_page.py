@@ -1,9 +1,6 @@
 import random
-
 from selenium.webdriver.common.by import By
-
 from Pages.base_page import BasePage
-
 
 class RegisterPage(BasePage):
     INPUT_FIRST_NAME = (By.ID, "firstname")
@@ -19,7 +16,7 @@ class RegisterPage(BasePage):
     ERROR_LAST_NAME = (By.ID, "lastname-error")
     ERROR_EMAIL = (By.ID, "email_address-error")
     ERROR_PASSWORD = (By.ID, "password-error")
-    ERROR_CONFIRM_PASS = (By.ID, "password-confirmation-error")
+    ERROR_PASSWORD_CONFIRMATION = (By.ID, "password-confirmation-error")
 
 
     def open(self):
@@ -36,8 +33,8 @@ class RegisterPage(BasePage):
         self.type(self.INPUT_EMAIL, text)
 
     def set_unique_email(self):
-        number = random.randint(0, 999999999999999999)
-        email_address = f"Popescu_{number}@gmail.com"
+        number = random.randint(0, 99999)
+        email_address = f"Popa-{number}@yahoo.com"
         self.set_email(email_address)
 
     def set_password(self, text):
@@ -71,5 +68,7 @@ class RegisterPage(BasePage):
     def verify_password_error_displayed(self):
         assert self.find(self.ERROR_PASSWORD).is_displayed(), 'password not found'
 
-    def verify_confirm_password_error_displayed(self):
-        assert self.find(self.ERROR_CONFIRM_PASS).is_displayed()
+    def verify_error_displayed(self, locator, expected_message):
+        element = self.find(locator)
+        assert element.is_displayed(), "Error message is not displayed"
+        assert element.text.strip() == expected_message, f"Expected message '{expected_message}', but got '{element.text.strip()}'"
